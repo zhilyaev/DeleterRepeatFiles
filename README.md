@@ -1,2 +1,3 @@
 # DeleterRepeatFiles
-Java scanning files and delete repeats
+This example simple console java application can delete repeat files
+
