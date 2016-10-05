@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
 
     private static File file ;
-    private static String path;
+    private static String path; 
     private static Scanner in = new Scanner(System.in);
     private static HashSet<String> set = new HashSet<>();
 
@@ -38,15 +38,16 @@ public class Main {
     private static void lookingfor(File file) throws IOException, NoSuchAlgorithmException {
         File[] list = file.listFiles();
         for (File l : list) {
-            if(l.isDirectory()) lookingfor(l);
+            if(l.isDirectory()) lookingfor(l); // recursion searching
             else {
                     MessageDigest md5Digest = MessageDigest.getInstance("MD5");
                     String checksum = getFileChecksum(md5Digest, l);
-                    if(set.contains(checksum)){
+                    if(set.contains(checksum)){ // if this file finded yet
                         System.out.println("delete file: "+l);
                         l.delete();
 
                     }else{
+                        // add hash to set
                         System.out.println("original: "+l);
                         set.add(checksum);
                     }
@@ -55,7 +56,7 @@ public class Main {
     }
 
 
-    /* Copypasta */
+    /* StackOverFlow help*/
     private static String getFileChecksum(MessageDigest digest, File file) throws IOException {
         //Get file input stream for reading the file content
         FileInputStream fis = new FileInputStream(file);
